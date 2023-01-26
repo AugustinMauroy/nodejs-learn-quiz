@@ -11,11 +11,11 @@ export default function Quiz({ children }) {
             if (correctAnswer === answer){
                 setCorrect(true);
                 setIncorrect(false);
-                document.getElementById(index.toString()).style.backgroundColor = "var(--brand6)";
+                document.getElementById(index.toString()).style.backgroundColor = "var(--brand5)";
             } else {
                 setCorrect(false);
                 setIncorrect(true);
-                document.getElementById(index.toString()).style.backgroundColor = "var(--danger6)";
+                document.getElementById(index.toString()).style.backgroundColor = "var(--danger5)";
             }
         }
     };
@@ -24,13 +24,13 @@ export default function Quiz({ children }) {
         return(
             children.answers.map((answer, index) => {
                 return(
-                    <button
+                    <span
                     key={index} 
                     onClick={checkAnswer(correctAnswer, answer, index)}
                     id={index}
                     >
                         {answer}
-                    </button>
+                    </span>
                 )
             })
         );
@@ -39,7 +39,7 @@ export default function Quiz({ children }) {
     const Content = () => {
         if (children.type === "multiple"){return(
             <>
-                <h4>{children.question}</h4>
+                <h2>{children.question}</h2>
                 <ul className={style.answers}>
                     <Answers />
                 </ul>
