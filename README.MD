@@ -6,8 +6,10 @@
 
 * [ ] Add a "How to use" section
 * [ ] Finish the Figma design
-* [ ] Setup next.js
-* [ ] Create a quiz component
+* [X] Setup next.js
+* [X] Create a home page
+* [X] Create a quiz component
+* [ ] Put the design from Figma in the project
 
 ## Thinks to consider
 
