@@ -1,7 +1,23 @@
-import React from 'react';
+import { useState } from 'react';
 
 export default function Quiz({ children }) {
     const correctAnswer: string = children.correctAnswer;
+    const [correct, setCorrect] = useState(false);
+    const [incorrect, setIncorrect] = useState(false);
+
+    const checkAnswer = (correctAnswer: string, answer: string, index: number) => {
+        return () => {
+            if (correctAnswer === answer){
+                setCorrect(true);
+                setIncorrect(false);
+                document.getElementById(index.toString()).style.backgroundColor = "green";
+            } else {
+                setCorrect(false);
+                setIncorrect(true);
+                document.getElementById(index.toString()).style.backgroundColor = "red";
+            }
+        }
+    };
 
     const Questions = () => {
         return(
@@ -30,29 +46,13 @@ export default function Quiz({ children }) {
         )} else if (children.type === "boolean"){return(
             <div>
                 <h4>{children.question}</h4>
-                <ul>
-                    <li>{children.correct_answer}</li>
-                    <li>{children.incorrect_answer}</li>
-                </ul>
+                {/* Create an system to mix the answers */}
             </div>
         )}
-        return (
-        <div>Error in inserted data.</div>
-        );
+        throw new Error("No type specified");
     };
 
     return (
         <Content />
     );
-};
-
-function checkAnswer(correctAnswer: string, answer: string, index: number){
-    if (correctAnswer === answer){
-        // add green background to button using react
-
-    } else {
-        // add red background to button using react
-
-    };
-    return null;
 };
