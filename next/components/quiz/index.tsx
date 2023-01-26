@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import style from './index.module.css';
 
 export default function Quiz({ children }) {
     const correctAnswer: string = children.correctAnswer;
@@ -10,16 +11,16 @@ export default function Quiz({ children }) {
             if (correctAnswer === answer){
                 setCorrect(true);
                 setIncorrect(false);
-                document.getElementById(index.toString()).style.backgroundColor = "green";
+                document.getElementById(index.toString()).style.backgroundColor = "var(--brand6)";
             } else {
                 setCorrect(false);
                 setIncorrect(true);
-                document.getElementById(index.toString()).style.backgroundColor = "red";
+                document.getElementById(index.toString()).style.backgroundColor = "var(--danger6)";
             }
         }
     };
 
-    const Questions = () => {
+    const Answers = () => {
         return(
             children.answers.map((answer, index) => {
                 return(
@@ -37,22 +38,24 @@ export default function Quiz({ children }) {
 
     const Content = () => {
         if (children.type === "multiple"){return(
-            <div>
+            <>
                 <h4>{children.question}</h4>
-                <ul>
-                    <Questions />
+                <ul className={style.answers}>
+                    <Answers />
                 </ul>
-            </div>
+            </>
         )} else if (children.type === "boolean"){return(
-            <div>
+            <>
                 <h4>{children.question}</h4>
                 {/* Create an system to mix the answers */}
-            </div>
+            </>
         )}
         throw new Error("No type specified");
     };
 
     return (
-        <Content />
+        <div className={style.quiz}>
+         <Content />
+        </div>
     );
 };
