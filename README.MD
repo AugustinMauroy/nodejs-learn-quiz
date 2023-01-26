@@ -14,3 +14,7 @@
 * "What is the goal of the quiz"
 * "What's the point of the quiz"
 * "Where will the data be sent"
+
+## Inspiration
+
+* [next learn](https://nextjs.org/learn/basics/create-nextjs-app/setup)
