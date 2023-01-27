@@ -30,7 +30,7 @@ export default function Quiz({ children}: any) {
         return () => {
             setSelectedAnswer(answer);
             setSelectedAnswerIndex(index);
-            document.getElementById(`${index}`).style = "border: 2px solid var(--brand5);"
+            document.getElementById(`check${index}`).style.backgroundColor = "var(--black5)";
         };
     };
 
@@ -39,10 +39,13 @@ export default function Quiz({ children}: any) {
             setSelectedAnswer(answer);
             setSelectedAnswerIndex(index);
             if (correctAnswer === answer){
-                document.getElementById(`check${index}`).src = '/true.svg';
+                document.getElementById(`check${index}`).innerHTML = '<img src="/true.svg" alt="true" />';
                 document.getElementById(`check${index}`).style.backgroundColor = "var(--brand5)";
+                const content = document.getElementById('summit').innerHTML
+                document.getElementById('summit').innerHTML = content + `<p>Correct!</p>`
+
             } else {
-                document.getElementById(`check${index}`).src = '/false.svg';
+                document.getElementById(`check${index}`).innerHTML = '<img src="/false.svg" alt="false" />';
                 document.getElementById(`check${index}`).style.backgroundColor = "var(--danger5)";
             };
         }
@@ -57,7 +60,7 @@ export default function Quiz({ children}: any) {
                     className={style.select}
                     onClick={selectAnswer(answer, index)}
                     >
-                        <img id={`check${index}`}/>
+                        <span id={`check${index}`} className={style.check}/>
                         <p
                         key={index.toString()} 
                         id={`${index}`}
@@ -74,28 +77,7 @@ export default function Quiz({ children}: any) {
     const AnswersTypeBool = () => {
         return(
             <>
-                <span
-                className={style.select}
-                onClick={checkAnswer(correctAnswer, "true", 0)}
-                >
-                    <image id={`check0`}/>
-                    <p
-                    id={`0`}
-                    >
-                        True
-                    </p>
-                </span>
-                <span
-                className={style.select}
-                onClick={checkAnswer(correctAnswer, "false", 1)}
-                >
-                    <image id={`check1`}/>
-                    <p
-                    id={`1`}
-                    >
-                        False
-                    </p>
-                </span>
+                {/* TODO: add system to support quiz type bool */}
             </>
         );
     };
@@ -106,17 +88,19 @@ export default function Quiz({ children}: any) {
     };
 
     return (
-        <div className={style.quiz}>    
+        <div className={style.quiz} id='quiz'>    
             <h2>{children.question}</h2>
             <div className={style.answers}>
                 <Content />
             </div>
+            <div id='summit' className={style.summit}>
             <button 
             onClick={checkAnswer(correctAnswer, selectedAnswer, selectedAnswerIndex)}
             className={style.button}
             >
                 Summit
             </button>
+            </div>
         </div>
     );
 };

@@ -4,7 +4,7 @@
     color: var(--black9);
     padding: 15px;
     width: 35rem;
-    margin: 1rem;
+    margin: 0 auto;
 }
 .answers{
     background: none;
@@ -21,11 +21,17 @@
     gap: 10px;
     align-items: center;
 }
-.select > img{
-    width: 1.5rem;
-    height: 1.5rem;
+.check{
+    width: 32px;
+    height: 32px;
     border-radius: 50px;
+    border: 1px solid var(--black3);
     background-color: var(--black2);
+}
+.summit{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
 }
 .button{
     background-color: var(--black0);
