@@ -22,22 +22,29 @@ export default function Quiz({ children}: any) {
     };
 
     const correctAnswer: string = children.correctAnswer;
-    const [correct, setCorrect] = useState(false);
-    const [incorrect, setIncorrect] = useState(false);
+
+    const [selectedAnswer, setSelectedAnswer] = useState<string>("");
+    const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>(-1);
+
+    const selectAnswer = (answer: string, index: number) => {
+        return () => {
+            setSelectedAnswer(answer);
+            setSelectedAnswerIndex(index);
+            document.getElementById(`${index}`).style = "border: 2px solid var(--brand5);"
+        };
+    };
 
     const checkAnswer = (correctAnswer: string, answer: string, index: number) => {
         return () => {
+            setSelectedAnswer(answer);
+            setSelectedAnswerIndex(index);
             if (correctAnswer === answer){
-                setIncorrect(true);
-                setCorrect(true);
+                document.getElementById(`check${index}`).src = '/true.svg';
                 document.getElementById(`check${index}`).style.backgroundColor = "var(--brand5)";
-                document.getElementById(`check${index}`).src = "/true.svg";
             } else {
-                setIncorrect(true);
-                setCorrect(false);
+                document.getElementById(`check${index}`).src = '/false.svg';
                 document.getElementById(`check${index}`).style.backgroundColor = "var(--danger5)";
-                document.getElementById(`check${index}`).src = "/false.svg";
-            }
+            };
         }
     };
 
@@ -48,11 +55,11 @@ export default function Quiz({ children}: any) {
                     <>
                     <span
                     className={style.select}
-                    onClick={checkAnswer(correctAnswer, answer, index)}
+                    onClick={selectAnswer(answer, index)}
                     >
-                        <img id={`check${index}`} src=''/>
+                        <img id={`check${index}`}/>
                         <p
-                        key={index} 
+                        key={index.toString()} 
                         id={`${index}`}
                         >
                             {answer}
@@ -104,7 +111,12 @@ export default function Quiz({ children}: any) {
             <div className={style.answers}>
                 <Content />
             </div>
-            <button>Summit</button>
+            <button 
+            onClick={checkAnswer(correctAnswer, selectedAnswer, selectedAnswerIndex)}
+            className={style.button}
+            >
+                Summit
+            </button>
         </div>
     );
 };

@@ -25,4 +25,19 @@
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50px;
+    background-color: var(--black2);
+}
+.button{
+    background-color: var(--black0);
+    border: 1px solid var(--brand5);
+    border-radius: 10px;
+    color: var(--black9);
+    padding: 5px;
+    width: 10rem;
+    margin: 1rem;
+    cursor: pointer;
+}
+.button:hover{
+    background-color: var(--brand5);
+    color: var(--black0);
 }
