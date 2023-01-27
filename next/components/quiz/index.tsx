@@ -15,7 +15,7 @@ export default function Quiz({ children}: any) {
         throw new Error("No question specified");
     } else if (children.type === "multiple" && children.answers.length < 2){
         throw new Error("Not enough answers specified");
-    } else if (children.type === "boolean" && children.correctAnswer !== "true" && children.correctAnswer !== "false"){
+    } else if (children.type === "boolean" && children.correctAnswer !== true && children.correctAnswer !== false){
         throw new Error("Correct answer is not true or false");
     } else if (children.type === "multiple" && children.answers.includes(children.correctAnswer) === false){
         throw new Error("Correct answer is not in the answers array");
@@ -28,15 +28,15 @@ export default function Quiz({ children}: any) {
     const checkAnswer = (correctAnswer: string, answer: string, index: number) => {
         return () => {
             if (correctAnswer === answer){
-                setCorrect(true);
-                setIncorrect(false);
-                document.getElementById(`check${index}`).style.backgroundColor = "var(--brand5)";
-                document.getElementById(`check${index}`).innerHTML = "/true.svg";
-            } else {
-                setCorrect(false);
                 setIncorrect(true);
+                setCorrect(true);
+                document.getElementById(`check${index}`).style.backgroundColor = "var(--brand5)";
+                document.getElementById(`check${index}`).src = "/true.svg";
+            } else {
+                setIncorrect(true);
+                setCorrect(false);
                 document.getElementById(`check${index}`).style.backgroundColor = "var(--danger5)";
-                document.getElementById(`check${index}`).innerHTML = "/false.svg";
+                document.getElementById(`check${index}`).src = "/false.svg";
             }
         }
     };
@@ -46,11 +46,13 @@ export default function Quiz({ children}: any) {
             children.answers.map((answer:string, index:number) => {
                 return(
                     <>
-                    <span>
-                        <image id={`check${index}`}/>
+                    <span
+                    className={style.select}
+                    onClick={checkAnswer(correctAnswer, answer, index)}
+                    >
+                        <img id={`check${index}`} src=''/>
                         <p
                         key={index} 
-                        onClick={checkAnswer(correctAnswer, answer, index)}
                         id={`${index}`}
                         >
                             {answer}
@@ -65,19 +67,23 @@ export default function Quiz({ children}: any) {
     const AnswersTypeBool = () => {
         return(
             <>
-                <span>
+                <span
+                className={style.select}
+                onClick={checkAnswer(correctAnswer, "true", 0)}
+                >
                     <image id={`check0`}/>
                     <p
-                    onClick={checkAnswer(correctAnswer, "true", 0)}
                     id={`0`}
                     >
                         True
                     </p>
                 </span>
-                <span>
+                <span
+                className={style.select}
+                onClick={checkAnswer(correctAnswer, "false", 1)}
+                >
                     <image id={`check1`}/>
                     <p
-                    onClick={checkAnswer(correctAnswer, "false", 1)}
                     id={`1`}
                     >
                         False
@@ -88,26 +94,17 @@ export default function Quiz({ children}: any) {
     };
 
     const Content = () => {
-        if (children.type === "multiple"){return(
-            <>
-                <h2>{children.question}</h2>
-                <div className={style.answers}>
-                    <AnswersTypeMultiple />
-                </div>
-            </>
-        )} else if (children.type === "boolean"){return(
-            <>
-                <h4>{children.question}</h4>
-                <div className={style.answers}>
-                    <AnswersTypeBool />
-                </div>
-            </>
-        )}
+        if (children.type === "multiple") return <AnswersTypeMultiple />
+        if (children.type === "boolean") return<AnswersTypeBool />
     };
 
     return (
-        <div className={style.quiz}>
-         <Content />
+        <div className={style.quiz}>    
+            <h2>{children.question}</h2>
+            <div className={style.answers}>
+                <Content />
+            </div>
+            <button>Summit</button>
         </div>
     );
 };

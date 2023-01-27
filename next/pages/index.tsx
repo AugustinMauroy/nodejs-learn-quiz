@@ -6,7 +6,7 @@ export default function Index() {
             <Quiz>
                 {{
                     type: "multiple",
-                    question : "What is nodejs.js",
+                    question : "What is node.js",
                     answers : [
                         "A server side javascript runtime",
                         "A javascript framework",
@@ -15,13 +15,13 @@ export default function Index() {
                     correctAnswer: "A server side javascript runtime"
                 }}
             </Quiz>
-            <Quiz>
+            {/*<Quiz>
                 {{
                     type: "boolean",
-                    question : "Is nodejs.js a server side javascript runtime",
+                    question : "Is nodejs a server side javascript runtime",
                     correctAnswer: true
                 }}
-            </Quiz>
+            </Quiz>*/}
         </>
     );
 };
