@@ -62,6 +62,31 @@ export default function Quiz({ children}: any) {
         );
     };
 
+    const AnswersTypeBool = () => {
+        return(
+            <>
+                <span>
+                    <image id={`check0`}/>
+                    <p
+                    onClick={checkAnswer(correctAnswer, "true", 0)}
+                    id={`0`}
+                    >
+                        True
+                    </p>
+                </span>
+                <span>
+                    <image id={`check1`}/>
+                    <p
+                    onClick={checkAnswer(correctAnswer, "false", 1)}
+                    id={`1`}
+                    >
+                        False
+                    </p>
+                </span>
+            </>
+        );
+    };
+
     const Content = () => {
         if (children.type === "multiple"){return(
             <>
@@ -74,8 +99,7 @@ export default function Quiz({ children}: any) {
             <>
                 <h4>{children.question}</h4>
                 <div className={style.answers}>
-                    <span onClick={checkAnswer("true", "true", 0)} id="0">True</span>
-                    <span onClick={checkAnswer("false", "false", 1)} id="1">False</span>
+                    <AnswersTypeBool />
                 </div>
             </>
         )}
