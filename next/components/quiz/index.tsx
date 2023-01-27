@@ -3,22 +3,20 @@ import style from './index.module.css';
 
 export default function Quiz({ children }: any): JSX.Element {
     // Test if the children format is correct and throw an error if not
-    if (children.type !== "multiple" && children.type !== "boolean"){
-        throw new Error("No type specified");
-    } else if (children.type === "multiple" && !children.answers){
-        throw new Error("No answers specified");
-    } else if (children.type === "multiple" && !children.correctAnswer){
-        throw new Error("No correct answer specified");
-    } else if (children.type === "boolean" && !children.correctAnswer){
-        throw new Error("No correct answer specified");
+    if (children.type !== 'multiple' && children.type !== 'boolean'){
+        throw new Error('No type specified');
+    } else if (children.type === 'multiple' && !children.answers){
+        throw new Error('No answers specified');
+    } else if (children.type === 'multiple' && !children.correctAnswer){
+        throw new Error('No correct answer specified');
     } else if (!children.question){
-        throw new Error("No question specified");
-    } else if (children.type === "multiple" && children.answers.length < 2){
-        throw new Error("Not enough answers specified");
-    } else if (children.type === "boolean" && children.correctAnswer !== true && children.correctAnswer !== false){
-        throw new Error("Correct answer is not true or false");
-    } else if (children.type === "multiple" && children.answers.includes(children.correctAnswer) === false){
-        throw new Error("Correct answer is not in the answers array");
+        throw new Error('No question specified');
+    } else if (children.type === 'multiple' && children.answers.length < 2){
+        throw new Error('Not enough answers specified');
+    } else if (children.type === 'boolean' && children.correctAnswer !== true && children.correctAnswer !== false){
+        throw new Error('Correct answer is not true or false');
+    } else if (children.type === 'multiple' && children.answers.includes(children.correctAnswer) === false){
+        throw new Error('Correct answer is not in the answers array');
     };
 
     const correctAnswer: string = children.correctAnswer;
