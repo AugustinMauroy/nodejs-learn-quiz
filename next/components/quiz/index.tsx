@@ -30,12 +30,12 @@ export default function Quiz({ children}: any) {
             if (correctAnswer === answer){
                 setCorrect(true);
                 setIncorrect(false);
-                document.getElementById(index.toString()).style.backgroundColor = "var(--brand5)";
+                document.getElementById(`check${index}`).style.backgroundColor = "var(--brand5)";
                 document.getElementById(`check${index}`).innerHTML = "/true.svg";
             } else {
                 setCorrect(false);
                 setIncorrect(true);
-                document.getElementById(index.toString()).style.backgroundColor = "var(--danger5)";
+                document.getElementById(`check${index}`).style.backgroundColor = "var(--danger5)";
                 document.getElementById(`check${index}`).innerHTML = "/false.svg";
             }
         }
@@ -43,7 +43,7 @@ export default function Quiz({ children}: any) {
 
     const AnswersTypeMultiple = () => {
         return(
-            children.answers.map((answer:string, index) => {
+            children.answers.map((answer:string, index:number) => {
                 return(
                     <>
                     <span>
@@ -51,7 +51,7 @@ export default function Quiz({ children}: any) {
                         <p
                         key={index} 
                         onClick={checkAnswer(correctAnswer, answer, index)}
-                        id={index}
+                        id={`${index}`}
                         >
                             {answer}
                         </p>
