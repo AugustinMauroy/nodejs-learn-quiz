@@ -6,11 +6,18 @@ This project is a proposal for the learn section of the nodejs website
 ## TODO
 
 * [ ] Add a "How to use" section
+
 * [X] Finish the Figma design
 * [X] Setup next.js
 * [X] Create a home page
 * [X] Create a quiz component
 * [ ] Put the design from Figma in the project
+
+* [ ] system to block the user to click on question when the quiz's answers are submitted.
+* [ ] Store the data in local storage
+* [ ] Implement the bool type question
+
+* [ ] Test the project
 
 ## Thinks to consider
 
