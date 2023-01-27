@@ -5,7 +5,7 @@ import '../styles/globals.css'
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
-        <main className={style.main}>
+        <main>
             <Component {...pageProps} />
         </main>
         <footer className={style.footer}>
