@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import style from './index.module.css';
 
-export default function Quiz({ children}: any) {
+export default function Quiz({ children }: any): JSX.Element {
     // Test if the children format is correct and throw an error if not
     if (children.type !== "multiple" && children.type !== "boolean"){
         throw new Error("No type specified");
@@ -26,15 +26,15 @@ export default function Quiz({ children}: any) {
     const [selectedAnswer, setSelectedAnswer] = useState<string>("");
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>(-1);
 
-    const selectAnswer = (answer: string, index: number) => {
+    const selectAnswer = (answer: string, index: number):any => {
         return () => {
             setSelectedAnswer(answer);
             setSelectedAnswerIndex(index);
-            document.getElementById(`check${index}`).style.backgroundColor = "var(--black5)";
+            document.getElementById(`check${index}`).style.backgroundColor = 'var(--black5)';
         };
     };
 
-    const checkAnswer = (correctAnswer: string, answer: string, index: number) => {
+    const checkAnswer = (correctAnswer: string, answer: string, index: number):any => {
         return () => {
             setSelectedAnswer(answer);
             setSelectedAnswerIndex(index);
@@ -51,7 +51,7 @@ export default function Quiz({ children}: any) {
         }
     };
 
-    const AnswersTypeMultiple = () => {
+    const AnswersTypeMultiple = (): JSX.Element => {
         return(
             children.answers.map((answer:string, index:number) => {
                 return(
@@ -60,7 +60,7 @@ export default function Quiz({ children}: any) {
                     className={style.select}
                     onClick={selectAnswer(answer, index)}
                     >
-                        <span id={`check${index}`} className={style.check}/>
+                        <span className={style.check} id={`check${index}`} />
                         <p
                         key={index.toString()} 
                         id={`${index}`}
@@ -74,7 +74,7 @@ export default function Quiz({ children}: any) {
         );
     };
 
-    const AnswersTypeBool = () => {
+    const AnswersTypeBool = (): JSX.Element => {
         return(
             <>
                 {/* TODO: add system to support quiz type bool */}
@@ -82,9 +82,9 @@ export default function Quiz({ children}: any) {
         );
     };
 
-    const Content = () => {
-        if (children.type === "multiple") return <AnswersTypeMultiple />
-        if (children.type === "boolean") return<AnswersTypeBool />
+    const Content = (): JSX.Element => {
+        if (children.type === 'multiple') return <AnswersTypeMultiple />
+        if (children.type === 'boolean') return <AnswersTypeBool />
     };
 
     return (
@@ -93,13 +93,15 @@ export default function Quiz({ children}: any) {
             <div className={style.answers}>
                 <Content />
             </div>
-            <div id='summit' className={style.summit}>
+            <div className={style.summit}>
             <button 
-            onClick={checkAnswer(correctAnswer, selectedAnswer, selectedAnswerIndex)}
             className={style.button}
+            id='summitButton'
+            onClick={checkAnswer(correctAnswer, selectedAnswer, selectedAnswerIndex)}
             >
                 Summit
             </button>
+            <p id='summitInfo'></p>
             </div>
         </div>
     );
