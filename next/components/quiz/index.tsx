@@ -20,9 +20,11 @@ export default function Quiz({ children }: any): JSX.Element {
     };
 
     const correctAnswer: string = children.correctAnswer;
+    const correctAnswerIndex:number = children.answers.indexOf(correctAnswer);
 
-    const [selectedAnswer, setSelectedAnswer] = useState<string>("");
+    const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>(-1);
+    const [summitInfo, setSummitInfo] = useState<boolean>(false);
 
     const selectAnswer = (answer: string, index: number):any => {
         return () => {
@@ -34,17 +36,27 @@ export default function Quiz({ children }: any): JSX.Element {
 
     const checkAnswer = (correctAnswer: string, answer: string, index: number):any => {
         return () => {
+            if (answer === ''){
+                document.getElementById('summitInfo').innerHTML = '<p>Please select an answer</p>';
+                setTimeout(() => {
+                    document.getElementById('summitInfo').innerHTML = '';
+                }, 2000);
+                return;
+            };
+
             setSelectedAnswer(answer);
             setSelectedAnswerIndex(index);
+
             if (correctAnswer === answer){
-                document.getElementById(`check${index}`).innerHTML = '<img src="/true.svg" alt="true" />';
-                document.getElementById(`check${index}`).style.backgroundColor = "var(--brand5)";
+                document.getElementById(`check${correctAnswerIndex}`).innerHTML = '<img src="/true.svg" alt="true" />';
+                document.getElementById(`check${correctAnswerIndex}`).style.backgroundColor = "var(--brand5)";
                 const content = document.getElementById('summit').innerHTML
                 document.getElementById('summit').innerHTML = content + `<p>Correct!</p>`
-
             } else {
                 document.getElementById(`check${index}`).innerHTML = '<img src="/false.svg" alt="false" />';
                 document.getElementById(`check${index}`).style.backgroundColor = "var(--danger5)";
+                document.getElementById(`check${correctAnswerIndex}`).innerHTML = '<img src="/true.svg" alt="true" />';
+                document.getElementById(`check${correctAnswerIndex}`).style.backgroundColor = "var(--brand5)";
             };
         }
     };
