@@ -1,11 +1,12 @@
 # Overview
 
-<!-- Todo:add an overview -->
+This repo is an draft of an quiz create with react and next.js.
+This project is a proposal for the learn section of the nodejs website
 
 ## TODO
 
 * [ ] Add a "How to use" section
-* [ ] Finish the Figma design
+* [X] Finish the Figma design
 * [X] Setup next.js
 * [X] Create a home page
 * [X] Create a quiz component
