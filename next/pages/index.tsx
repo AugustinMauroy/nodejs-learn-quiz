@@ -15,6 +15,13 @@ export default function Index() {
                     correctAnswer: "A server side javascript runtime"
                 }}
             </Quiz>
+            <Quiz>
+                {{
+                    type: "boolean",
+                    question : "Is nodejs.js a server side javascript runtime",
+                    correctAnswer: true
+                }}
+            </Quiz>
         </>
     );
 };
