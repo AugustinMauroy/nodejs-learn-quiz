@@ -1,7 +1,18 @@
 import { useState } from 'react';
 import style from './index.module.css';
 
-export default function Quiz({ children }) {
+export default function Quiz({ children}: any) {
+    // Test if the children format is correct and throw an error if not
+    if (children.type !== "multiple" && children.type !== "boolean"){
+        throw new Error("No type specified");
+    } else if (children.type === "multiple" && !children.answers){
+        throw new Error("No answers specified");
+    } else if (children.type === "multiple" && !children.correctAnswer){
+        throw new Error("No correct answer specified");
+    }
+
+
+
     const correctAnswer: string = children.correctAnswer;
     const [correct, setCorrect] = useState(false);
     const [incorrect, setIncorrect] = useState(false);
@@ -22,7 +33,7 @@ export default function Quiz({ children }) {
 
     const Answers = () => {
         return(
-            children.answers.map((answer, index) => {
+            children.answers.map((answer:string, index) => {
                 return(
                     <span
                     key={index} 
@@ -40,17 +51,16 @@ export default function Quiz({ children }) {
         if (children.type === "multiple"){return(
             <>
                 <h2>{children.question}</h2>
-                <ul className={style.answers}>
+                <div className={style.answers}>
                     <Answers />
-                </ul>
+                </div>
             </>
         )} else if (children.type === "boolean"){return(
             <>
                 <h4>{children.question}</h4>
-                {/* Create an system to mix the answers */}
+                {/* @todo: add system to create true or false */}
             </>
         )}
-        throw new Error("No type specified");
     };
 
     return (
