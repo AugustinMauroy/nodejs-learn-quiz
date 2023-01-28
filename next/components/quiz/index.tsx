@@ -49,14 +49,13 @@ export default function Quiz({ children }: any): JSX.Element {
 
             if (correctAnswer === answer){
                 document.getElementById(`check${correctAnswerIndex}`).innerHTML = '<img src="/true.svg" alt="true" />';
-                document.getElementById(`check${correctAnswerIndex}`).style.backgroundColor = "var(--brand5)";
-                const content = document.getElementById('summitInfo').innerHTML
-                document.getElementById('summitInfo').innerHTML = content + `<p>Correct!</p>`
+                document.getElementById(`check${correctAnswerIndex}`).style.backgroundColor = 'var(--brand5)';
+                document.getElementById('summitInfo').innerHTML = '<p>Correct!</p>';
             } else {
                 document.getElementById(`check${index}`).innerHTML = '<img src="/false.svg" alt="false" />';
-                document.getElementById(`check${index}`).style.backgroundColor = "var(--danger5)";
+                document.getElementById(`check${index}`).style.backgroundColor = 'var(--danger5)';
                 document.getElementById(`check${correctAnswerIndex}`).innerHTML = '<img src="/true.svg" alt="true" />';
-                document.getElementById(`check${correctAnswerIndex}`).style.backgroundColor = "var(--brand5)";
+                document.getElementById(`check${correctAnswerIndex}`).style.backgroundColor = 'var(--brand5)';
             };
         }
     };
