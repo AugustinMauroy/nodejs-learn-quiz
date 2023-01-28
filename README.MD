@@ -13,6 +13,7 @@ This project is a proposal for the learn section of the nodejs website
 * [X] Create a quiz component
 * [ ] Put the design from Figma in the project
 
+* [ ] add unselect answer
 * [ ] system to block the user to click on question when the quiz's answers are submitted.
 * [ ] Store the data in local storage
 * [ ] Implement the bool type question
