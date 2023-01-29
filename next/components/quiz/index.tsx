@@ -56,8 +56,9 @@ export default function Quiz({ children }: any): JSX.Element {
                 document.getElementById(`check${index}`).style.backgroundColor = 'var(--danger5)';
                 document.getElementById(`check${correctAnswerIndex}`).innerHTML = '<img src="/true.svg" alt="true" />';
                 document.getElementById(`check${correctAnswerIndex}`).style.backgroundColor = 'var(--brand5)';
+                document.getElementById('summitInfo').innerHTML = '<p>Wrong Answer</p>';
             };
-        }
+        };
     };
 
     const AnswersTypeMultiple = (): JSX.Element => {
