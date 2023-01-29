@@ -20,7 +20,7 @@ export default function Quiz({ children }: any): JSX.Element {
     };
 
     const correctAnswer: string = children.correctAnswer;
-    const correctAnswerIndex:number = children.answers.indexOf(correctAnswer);
+    const correctAnswerIndex: number = children.answers.indexOf(correctAnswer); 
 
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>(-1);
@@ -86,7 +86,30 @@ export default function Quiz({ children }: any): JSX.Element {
     const AnswersTypeBool = (): JSX.Element => {
         return(
             <>
-                {/* TODO: add system to support quiz type bool */}
+            <span
+            className={style.select}
+            onClick={selectAnswer('True', 0)}
+            >
+                <span className={style.check} id={`check0`} />
+                <p
+                key={0}
+                id={'1'}
+                >
+                    True
+                </p>
+            </span>
+            <span
+            className={style.select}
+            onClick={selectAnswer('False', 1)}
+            >
+                <span className={style.check} id={`check1`} />
+                <p
+                key={1}
+                id={'1'}
+                >
+                    False
+                </p>
+            </span>
             </>
         );
     };
