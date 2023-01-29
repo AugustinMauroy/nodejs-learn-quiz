@@ -34,7 +34,7 @@ export default function Quiz({ children }: any): JSX.Element {
         };
     };
 
-    const checkAnswer = (correctAnswer: string, answer: string, index: number):any => {
+    const checkAnswer = (answer: string, index: number):any => {
         return () => {
             if (answer === ''){
                 document.getElementById('summitInfo').innerHTML = '<p>Please select an answer</p>';
@@ -44,8 +44,7 @@ export default function Quiz({ children }: any): JSX.Element {
                 return;
             };
 
-            setSelectedAnswer(answer);
-            setSelectedAnswerIndex(index);
+            setSummitInfo(true);
 
             if (correctAnswer === answer){
                 document.getElementById(`check${correctAnswerIndex}`).innerHTML = '<img src="/true.svg" alt="true" />';
@@ -107,7 +106,7 @@ export default function Quiz({ children }: any): JSX.Element {
             <button 
             className={style.button}
             id='summitButton'
-            onClick={checkAnswer(correctAnswer, selectedAnswer, selectedAnswerIndex)}
+            onClick={checkAnswer(selectedAnswer, selectedAnswerIndex)}
             >
                 Summit
             </button>
