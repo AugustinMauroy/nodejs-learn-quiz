@@ -16,9 +16,9 @@ This project is a proposal for the learn section of the nodejs website
 
 * [X] Implement the multiple choice question
 * [X] Add TSX type bool question
-* [ ] add unselect answer
-* [ ] system to block the user to click on question when the quiz's answers are submitted.
-* [ ] Implement the bool type question
+* [X] add unselect answer
+* [X] system to block the user to click on question when the quiz's answers are submitted.
+* [X] Implement the bool type question
 * [ ] Store the data in local storage
 
 * [ ] Install Prettier

@@ -48,3 +48,13 @@
     background-color: var(--brand5);
     color: var(--black0);
 }
+.true{
+    background-color: var(--brand5);
+    border-radius: 50%;
+    color: var(--black0);
+}
+.false{
+    background-color: var(--danger5);
+    border-radius: 50%;
+    color: var(--black0);
+}

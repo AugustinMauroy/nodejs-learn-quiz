@@ -20,42 +20,43 @@ export default function Quiz({ children }: any): JSX.Element {
     };
 
     const correctAnswer: string = children.correctAnswer;
-    const correctAnswerIndex: number = children.answers.indexOf(correctAnswer); 
+    const correctAnswerIndex: number = children.answers? children.answers.indexOf(correctAnswer) : -1; 
 
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>(-1);
-    const [summitInfo, setSummitInfo] = useState<boolean>(false);
+    const [summitInfo, setSummitInfo] = useState<string>('');
+    const [isSummit, setIsSummit] = useState<boolean>(false);
 
     const selectAnswer = (answer: string, index: number):any => {
         return () => {
+            if (isSummit) return;
+            if (answer === selectedAnswer){
+                setSelectedAnswer('');
+                setSelectedAnswerIndex(-1);
+                return;
+            };
             setSelectedAnswer(answer);
             setSelectedAnswerIndex(index);
-            document.getElementById(`check${index}`).style.backgroundColor = 'var(--black8)';
         };
     };
 
-    const checkAnswer = (answer: string, index: number):any => {
+    const checkAnswer = (answer: string):any => {
         return () => {
+            if (isSummit) return;
             if (answer === ''){
-                document.getElementById('summitInfo').innerHTML = '<p>Please select an answer</p>';
+                setSummitInfo('Please select an answer');
                 setTimeout(() => {
-                    document.getElementById('summitInfo').innerHTML = '';
+                    setSummitInfo('');
                 }, 2000);
                 return;
             };
 
-            setSummitInfo(true);
+            setIsSummit(true);
 
             if (correctAnswer === answer){
-                document.getElementById(`check${correctAnswerIndex}`).innerHTML = '<img src="/true.svg" alt="true" />';
-                document.getElementById(`check${correctAnswerIndex}`).style.backgroundColor = 'var(--brand5)';
-                document.getElementById('summitInfo').innerHTML = '<p>Correct!</p>';
+                setSummitInfo('Correct Answer');
             } else {
-                document.getElementById(`check${index}`).innerHTML = '<img src="/false.svg" alt="false" />';
-                document.getElementById(`check${index}`).style.backgroundColor = 'var(--danger5)';
-                document.getElementById(`check${correctAnswerIndex}`).innerHTML = '<img src="/true.svg" alt="true" />';
-                document.getElementById(`check${correctAnswerIndex}`).style.backgroundColor = 'var(--brand5)';
-                document.getElementById('summitInfo').innerHTML = '<p>Wrong Answer</p>';
+                setSummitInfo('Wrong Answer');
             };
         };
     };
@@ -69,11 +70,17 @@ export default function Quiz({ children }: any): JSX.Element {
                     className={style.select}
                     onClick={selectAnswer(answer, index)}
                     >
-                        <span className={style.check} id={`check${index}`} />
-                        <p
-                        key={index.toString()} 
-                        id={`${index}`}
+                        <span
+                        className={style.check}
+                        style={{ backgroundColor: selectedAnswerIndex === index ? 'var(--black8)' : '' }}
                         >
+                            {
+                                isSummit && correctAnswerIndex === index ? <img src="/true.svg" alt="true" className={style.true} /> : ''
+                            }{
+                                isSummit && correctAnswerIndex !== index && selectedAnswerIndex === index ? <img src="/false.svg" alt="false" className={style.false} /> : ''
+                            }
+                        </span>
+                        <p key={index.toString()} >
                             {answer}
                         </p>
                     </span>
@@ -90,11 +97,17 @@ export default function Quiz({ children }: any): JSX.Element {
             className={style.select}
             onClick={selectAnswer('True', 0)}
             >
-                <span className={style.check} id={`check0`} />
-                <p
-                key={0}
-                id={'1'}
+                <span
+                className={style.check}
+                style={{ backgroundColor: selectedAnswerIndex === 0 ? 'var(--black8)' : '' }}
                 >
+                    {
+                        isSummit && correctAnswer === 'True' ? <img src="/true.svg" alt="true" className={style.true} /> : ''
+                    }{
+                        isSummit && correctAnswer !== 'True' && selectedAnswerIndex === 0 ? <img src="/false.svg" alt="false" className={style.false} /> : ''
+                    }
+                </span>
+                <p>
                     True
                 </p>
             </span>
@@ -102,11 +115,17 @@ export default function Quiz({ children }: any): JSX.Element {
             className={style.select}
             onClick={selectAnswer('False', 1)}
             >
-                <span className={style.check} id={`check1`} />
-                <p
-                key={1}
-                id={'1'}
+                <span
+                className={style.check}
+                style={{ backgroundColor: selectedAnswerIndex === 1 ? 'var(--black8)' : '' }}
                 >
+                    {
+                        isSummit && correctAnswer === 'False' ? <img src="/true.svg" alt="true" className={style.true} /> : ''
+                    }{
+                        isSummit && correctAnswer !== 'False' && selectedAnswerIndex === 1 ? <img src="/false.svg" alt="false" className={style.false} /> : ''
+                    }
+                </span>
+                <p>
                     False
                 </p>
             </span>
@@ -114,26 +133,22 @@ export default function Quiz({ children }: any): JSX.Element {
         );
     };
 
-    const Content = (): JSX.Element => {
-        if (children.type === 'multiple') return <AnswersTypeMultiple />
-        if (children.type === 'boolean') return <AnswersTypeBool />
-    };
-
     return (
         <div className={style.quiz} id='quiz'>    
             <h2>{children.question}</h2>
             <div className={style.answers}>
-                <Content />
+                {children.type === 'multiple' ? <AnswersTypeMultiple /> : <AnswersTypeBool />}
             </div>
             <div className={style.summit}>
-            <button 
-            className={style.button}
-            id='summitButton'
-            onClick={checkAnswer(selectedAnswer, selectedAnswerIndex)}
-            >
-                Summit
-            </button>
-            <p id='summitInfo'></p>
+                <button 
+                className={style.button}
+                onClick={checkAnswer(selectedAnswer)}
+                >
+                    Summit
+                </button>
+                <p>
+                    {summitInfo}
+                </p>
             </div>
         </div>
     );
