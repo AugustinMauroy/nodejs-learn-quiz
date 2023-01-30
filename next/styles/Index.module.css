@@ -3,3 +3,6 @@
     text-align: center;
     color: var(--color-text-primary);
 }
+.footer a{
+    color: var(--brand4)
+}

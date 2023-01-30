@@ -30,7 +30,7 @@ export default function Quiz({ children }: any): JSX.Element {
         return () => {
             setSelectedAnswer(answer);
             setSelectedAnswerIndex(index);
-            document.getElementById(`check${index}`).style.backgroundColor = 'var(--black5)';
+            document.getElementById(`check${index}`).style.backgroundColor = 'var(--black8)';
         };
     };
 
