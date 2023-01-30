@@ -11,8 +11,11 @@ This project is a proposal for the learn section of the nodejs website
 * [X] Setup next.js
 * [X] Create a home page
 * [X] Create a quiz component
-* [ ] Put the design from Figma in the project
+* [X] Put the design from Figma in the project
+* [ ] Put the correct color from Figma in the project
 
+* [X] Implement the multiple choice question
+* [X] Add TSX type bool question
 * [ ] add unselect answer
 * [ ] system to block the user to click on question when the quiz's answers are submitted.
 * [ ] Implement the bool type question
