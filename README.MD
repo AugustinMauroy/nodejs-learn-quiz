@@ -15,9 +15,11 @@ This project is a proposal for the learn section of the nodejs website
 
 * [ ] add unselect answer
 * [ ] system to block the user to click on question when the quiz's answers are submitted.
-* [ ] Store the data in local storage
 * [ ] Implement the bool type question
+* [ ] Store the data in local storage
 
+* [ ] Install Prettier
+* [ ] Format the code
 * [ ] Test the project
 
 ## Thinks to consider
