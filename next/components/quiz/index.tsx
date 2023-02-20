@@ -134,7 +134,7 @@ export default function Quiz({ children }: any): JSX.Element {
     };
 
     return (
-        <div className={Styles.quiz} id='quiz'>    
+        <div className={Styles.quiz}>    
             <h2>{children.question}</h2>
             <div className={Styles.answers}>
                 {children.type === 'multiple' ? <AnswersTypeMultiple /> : <AnswersTypeBool />}
