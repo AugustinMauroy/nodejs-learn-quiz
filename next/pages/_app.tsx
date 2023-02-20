@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app';
 import Styles from '../styles/index.module.css';
 import '../styles/globals.css';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     const date = (startingDate: number): string => {
         const date = new Date();
         const year = date.getFullYear();
