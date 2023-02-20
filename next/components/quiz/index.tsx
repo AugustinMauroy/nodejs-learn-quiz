@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import style from './index.module.css';
+import Styles from './index.module.css';
 
 export default function Quiz({ children }: any): JSX.Element {
     // Test if the children format is correct and throw an error if not
@@ -67,17 +67,17 @@ export default function Quiz({ children }: any): JSX.Element {
                 return(
                     <>
                     <span
-                    className={style.select}
+                    className={Styles.select}
                     onClick={selectAnswer(answer, index)}
                     >
                         <span
-                        className={style.check}
+                        className={Styles.check}
                         style={{ backgroundColor: selectedAnswerIndex === index ? 'var(--black8)' : '' }}
                         >
                             {
-                                isSummit && correctAnswerIndex === index ? <img src="/true.svg" alt="" className={style.true} /> : ''
+                                isSummit && correctAnswerIndex === index ? <img src="/true.svg" alt="" className={Styles.true} /> : ''
                             }{
-                                isSummit && correctAnswerIndex !== index && selectedAnswerIndex === index ? <img src="/false.svg" alt="" className={style.false} /> : ''
+                                isSummit && correctAnswerIndex !== index && selectedAnswerIndex === index ? <img src="/false.svg" alt="" className={Styles.false} /> : ''
                             }
                         </span>
                         <p key={index.toString()} >
@@ -94,17 +94,17 @@ export default function Quiz({ children }: any): JSX.Element {
         return(
             <>
             <span
-            className={style.select}
+            className={Styles.select}
             onClick={selectAnswer('True', 0)}
             >
                 <span
-                className={style.check}
+                className={Styles.check}
                 style={{ backgroundColor: selectedAnswerIndex === 0 ? 'var(--black8)' : '' }}
                 >
                     {
-                        isSummit && correctAnswer === 'True' ? <img src="/true.svg" alt="" className={style.true} /> : ''
+                        isSummit && correctAnswer === 'True' ? <img src="/true.svg" alt="" className={Styles.true} /> : ''
                     }{
-                        isSummit && correctAnswer !== 'True' && selectedAnswerIndex === 0 ? <img src="/false.svg" alt="" className={style.false} /> : ''
+                        isSummit && correctAnswer !== 'True' && selectedAnswerIndex === 0 ? <img src="/false.svg" alt="" className={Styles.false} /> : ''
                     }
                 </span>
                 <p>
@@ -112,17 +112,17 @@ export default function Quiz({ children }: any): JSX.Element {
                 </p>
             </span>
             <span
-            className={style.select}
+            className={Styles.select}
             onClick={selectAnswer('False', 1)}
             >
                 <span
-                className={style.check}
+                className={Styles.check}
                 style={{ backgroundColor: selectedAnswerIndex === 1 ? 'var(--black8)' : '' }}
                 >
                     {
-                        isSummit && correctAnswer === 'False' ? <img src="/true.svg" alt="" className={style.true} /> : ''
+                        isSummit && correctAnswer === 'False' ? <img src="/true.svg" alt="" className={Styles.true} /> : ''
                     }{
-                        isSummit && correctAnswer !== 'False' && selectedAnswerIndex === 1 ? <img src="/false.svg" alt="" className={style.false} /> : ''
+                        isSummit && correctAnswer !== 'False' && selectedAnswerIndex === 1 ? <img src="/false.svg" alt="" className={Styles.false} /> : ''
                     }
                 </span>
                 <p>
@@ -134,14 +134,14 @@ export default function Quiz({ children }: any): JSX.Element {
     };
 
     return (
-        <div className={style.quiz} id='quiz'>    
+        <div className={Styles.quiz} id='quiz'>    
             <h2>{children.question}</h2>
-            <div className={style.answers}>
+            <div className={Styles.answers}>
                 {children.type === 'multiple' ? <AnswersTypeMultiple /> : <AnswersTypeBool />}
             </div>
-            <div className={style.summit}>
+            <div className={Styles.summit}>
                 <button 
-                className={style.button}
+                className={Styles.button}
                 onClick={checkAnswer(selectedAnswer)}
                 >
                     Summit
