@@ -1,6 +1,6 @@
-import type { AppProps } from 'next/app'
-import style from '../styles/index.module.css'
-import '../styles/globals.css'
+import type { AppProps } from 'next/app';
+import style from '../styles/index.module.css';
+import '../styles/globals.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     const date = (startingDate: number) => {
@@ -20,5 +20,5 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             <p>Created by <a href="https://github.com/augustinmauroy">Augustin Mauroy</a><br />Copyright © {date(2023)} Augustin Mauroy</p>
         </footer>
         </>
-    )
+    );
 };

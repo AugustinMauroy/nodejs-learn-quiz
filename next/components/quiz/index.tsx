@@ -75,9 +75,9 @@ export default function Quiz({ children }: any): JSX.Element {
                         style={{ backgroundColor: selectedAnswerIndex === index ? 'var(--black8)' : '' }}
                         >
                             {
-                                isSummit && correctAnswerIndex === index ? <img src="/true.svg" alt="true" className={style.true} /> : ''
+                                isSummit && correctAnswerIndex === index ? <img src="/true.svg" alt="" className={style.true} /> : ''
                             }{
-                                isSummit && correctAnswerIndex !== index && selectedAnswerIndex === index ? <img src="/false.svg" alt="false" className={style.false} /> : ''
+                                isSummit && correctAnswerIndex !== index && selectedAnswerIndex === index ? <img src="/false.svg" alt="" className={style.false} /> : ''
                             }
                         </span>
                         <p key={index.toString()} >
@@ -85,7 +85,7 @@ export default function Quiz({ children }: any): JSX.Element {
                         </p>
                     </span>
                     </>
-                )
+                );
             })
         );
     };
@@ -102,9 +102,9 @@ export default function Quiz({ children }: any): JSX.Element {
                 style={{ backgroundColor: selectedAnswerIndex === 0 ? 'var(--black8)' : '' }}
                 >
                     {
-                        isSummit && correctAnswer === 'True' ? <img src="/true.svg" alt="true" className={style.true} /> : ''
+                        isSummit && correctAnswer === 'True' ? <img src="/true.svg" alt="" className={style.true} /> : ''
                     }{
-                        isSummit && correctAnswer !== 'True' && selectedAnswerIndex === 0 ? <img src="/false.svg" alt="false" className={style.false} /> : ''
+                        isSummit && correctAnswer !== 'True' && selectedAnswerIndex === 0 ? <img src="/false.svg" alt="" className={style.false} /> : ''
                     }
                 </span>
                 <p>
@@ -120,9 +120,9 @@ export default function Quiz({ children }: any): JSX.Element {
                 style={{ backgroundColor: selectedAnswerIndex === 1 ? 'var(--black8)' : '' }}
                 >
                     {
-                        isSummit && correctAnswer === 'False' ? <img src="/true.svg" alt="true" className={style.true} /> : ''
+                        isSummit && correctAnswer === 'False' ? <img src="/true.svg" alt="" className={style.true} /> : ''
                     }{
-                        isSummit && correctAnswer !== 'False' && selectedAnswerIndex === 1 ? <img src="/false.svg" alt="false" className={style.false} /> : ''
+                        isSummit && correctAnswer !== 'False' && selectedAnswerIndex === 1 ? <img src="/false.svg" alt="" className={style.false} /> : ''
                     }
                 </span>
                 <p>
