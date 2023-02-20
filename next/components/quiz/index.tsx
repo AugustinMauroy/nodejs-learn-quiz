@@ -19,7 +19,7 @@ export default function Quiz({ children }: any): JSX.Element {
         throw new Error('Correct answer is not in the answers array');
     };
 
-    const correctAnswer: string = children.correctAnswer;
+    const correctAnswer: string | boolean = children.correctAnswer;
     const correctAnswerIndex: number = children.answers? children.answers.indexOf(correctAnswer) : -1; 
 
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
@@ -102,9 +102,9 @@ export default function Quiz({ children }: any): JSX.Element {
                 style={{ backgroundColor: selectedAnswerIndex === 0 ? 'var(--black8)' : '' }}
                 >
                     {
-                        isSummit && correctAnswer === 'True' ? <img src="/true.svg" alt="" className={Styles.true} /> : ''
+                        isSummit && correctAnswer === true ? <img src="/true.svg" alt="" className={Styles.true} /> : ''
                     }{
-                        isSummit && correctAnswer !== 'True' && selectedAnswerIndex === 0 ? <img src="/false.svg" alt="" className={Styles.false} /> : ''
+                        isSummit && correctAnswer !== true && selectedAnswerIndex === 0 ? <img src="/false.svg" alt="" className={Styles.false} /> : ''
                     }
                 </span>
                 <p>
@@ -120,9 +120,9 @@ export default function Quiz({ children }: any): JSX.Element {
                 style={{ backgroundColor: selectedAnswerIndex === 1 ? 'var(--black8)' : '' }}
                 >
                     {
-                        isSummit && correctAnswer === 'False' ? <img src="/true.svg" alt="" className={Styles.true} /> : ''
+                        isSummit && correctAnswer === false ? <img src="/true.svg" alt="" className={Styles.true} /> : ''
                     }{
-                        isSummit && correctAnswer !== 'False' && selectedAnswerIndex === 1 ? <img src="/false.svg" alt="" className={Styles.false} /> : ''
+                        isSummit && correctAnswer !== false && selectedAnswerIndex === 1 ? <img src="/false.svg" alt="" className={Styles.false} /> : ''
                     }
                 </span>
                 <p>
