@@ -21,8 +21,8 @@ This project is a proposal for the learn section of the nodejs website
 * [X] Implement the bool type question
 * [ ] Store the data in local storage
 
-* [ ] Install Prettier
-* [ ] Format the code
+* [X] Install ESlint
+* [X] Format the code
 * [ ] Test the project
 
 ## Thinks to consider
