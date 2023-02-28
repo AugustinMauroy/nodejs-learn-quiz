@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app';
-import Styles from '../styles/index.module.css';
-import '../styles/globals.css';
+import Styles from '../styles/index.module.scss';
+import '../styles/globals.scss';
 
-export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+export default function App({ Component, pageProps }: AppProps): JSX.Element {
     const date = (startingDate: number): string => {
         const date = new Date();
         const year = date.getFullYear();

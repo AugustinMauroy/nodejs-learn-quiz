@@ -1,6 +1,6 @@
 import Quiz from '../components/quiz/';
 
-export default function Index(): JSX.Element {
+export default function pageIndex(): JSX.Element {
     return (
         <>
             <Quiz>

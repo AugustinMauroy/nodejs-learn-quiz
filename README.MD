@@ -3,6 +3,25 @@
 This repo is an draft of an quiz create with react and next.js.
 This project is a proposal for the learn section of the nodejs website
 
+## Design
+
+You can found the [Figma design](https://www.figma.com/file/jRMFKZBuEJ5yqzun2WfFT0/learn?node-id=0%3A1&t=Aq1WgSPcR19HjCoI-1).
+
+### icons
+
+Icons from Figma.
+
+## Test of quiz with next.js
+
+This section is a test of quiz with [next.js](https://nextjs.org)
+
+### local development
+
+```bash
+npm install
+npm run dev
+```
+
 ## TODO
 
 * [ ] Add a "How to use" section

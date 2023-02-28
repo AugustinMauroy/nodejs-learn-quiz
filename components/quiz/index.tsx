@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Styles from './index.module.css';
+import Styles from './index.module.scss';
 
 export default function Quiz({ children }: any): JSX.Element {
-    // Test if the children format is correct and throw an error if not
     if (children.type !== 'multiple' && children.type !== 'boolean'){
         throw new Error('No type specified');
     } else if (children.type === 'multiple' && !children.answers){
