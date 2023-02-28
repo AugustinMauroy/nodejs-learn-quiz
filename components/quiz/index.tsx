@@ -10,6 +10,12 @@ type QuizProps = {
     };
 };
 
+type AnswersTypeMultipleProps = {
+    question: string;
+    answers: string[];
+    correctAnswer: string;
+};
+
 export default function Quiz({ children }: QuizProps): JSX.Element {
     const correctAnswer: string | boolean = children.correctAnswer;
     const correctAnswerIndex: number = children.answers? children.answers.indexOf(correctAnswer as string) : -1; 
@@ -56,10 +62,10 @@ export default function Quiz({ children }: QuizProps): JSX.Element {
         };
     };
 
-    const AnswersTypeMultiple = ()=> {
+    const AnswersTypeMultiple = (question) :JSX.Element => {
         return(
             <>
-            {children.answers.map((answer: string, index: number) => {
+            {question.question.answers.map((answer: string, index: number) => {
                 return<div key={index.toString()} >
                 <span
                 className={Styles.select}
@@ -130,7 +136,7 @@ export default function Quiz({ children }: QuizProps): JSX.Element {
         <div className={Styles.quiz}>    
             <h2>{children.question}</h2>
             <div className={Styles.answers}>
-                {children.type === 'multiple' ? <AnswersTypeMultiple /> : <AnswersTypeBool />}
+                {children.type === 'multiple' ? <AnswersTypeMultiple question={children} /> : <AnswersTypeBool/>}
             </div>
             <div className={Styles.summit}>
                 <button 
