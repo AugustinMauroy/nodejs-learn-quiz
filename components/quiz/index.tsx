@@ -16,6 +16,9 @@ export default function Quiz({ children }: QuizProps): JSX.Element {
 
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>(-1);
+
+    const [summitButton, setSummitButton] = useState<string>('Submit');
+
     const [summitInfo, setSummitInfo] = useState<string>('');
     const [isSummit, setIsSummit] = useState<boolean>(false);
 
@@ -134,7 +137,7 @@ export default function Quiz({ children }: QuizProps): JSX.Element {
                 className={Styles.button}
                 onClick={checkAnswer(selectedAnswer)}
                 >
-                    Summit
+                    {summitButton}
                 </button>
                 <p>
                     {summitInfo}
