@@ -1,25 +1,18 @@
 import { useState } from 'react';
 import Styles from './index.module.scss';
 
-export default function Quiz({ children }: any): JSX.Element {
-    if (children.type !== 'multiple' && children.type !== 'boolean'){
-        throw new Error('No type specified');
-    } else if (children.type === 'multiple' && !children.answers){
-        throw new Error('No answers specified');
-    } else if (children.type === 'multiple' && !children.correctAnswer){
-        throw new Error('No correct answer specified');
-    } else if (!children.question){
-        throw new Error('No question specified');
-    } else if (children.type === 'multiple' && children.answers.length < 2){
-        throw new Error('Not enough answers specified');
-    } else if (children.type === 'boolean' && children.correctAnswer !== true && children.correctAnswer !== false){
-        throw new Error('Correct answer is not true or false');
-    } else if (children.type === 'multiple' && children.answers.includes(children.correctAnswer) === false){
-        throw new Error('Correct answer is not in the answers array');
+type QuizProps = {
+    children: {
+        question: string;
+        type: string;
+        answers: string[];
+        correctAnswer: string | boolean;
     };
+};
 
+export default function Quiz({ children }: QuizProps): JSX.Element {
     const correctAnswer: string | boolean = children.correctAnswer;
-    const correctAnswerIndex: number = children.answers? children.answers.indexOf(correctAnswer) : -1; 
+    const correctAnswerIndex: number = children.answers? children.answers.indexOf(correctAnswer as string) : -1; 
 
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>(-1);
@@ -60,32 +53,30 @@ export default function Quiz({ children }: any): JSX.Element {
         };
     };
 
-    const AnswersTypeMultiple = (): JSX.Element => {
+    const AnswersTypeMultiple = ()=> {
         return(
-            children.answers.map((answer:string, index:number) => {
-                return(
-                    <>
+            <>
+            {children.answers.map((answer: string, index: number) => {
+                return<div key={index.toString()} >
+                <span
+                className={Styles.select}
+                onClick={selectAnswer(answer, index)}
+                >
                     <span
-                    className={Styles.select}
-                    onClick={selectAnswer(answer, index)}
+                    className={Styles.check}
+                    style={{ backgroundColor: selectedAnswerIndex === index ? 'var(--black8)' : '' }}
                     >
-                        <span
-                        className={Styles.check}
-                        style={{ backgroundColor: selectedAnswerIndex === index ? 'var(--black8)' : '' }}
-                        >
-                            {
-                                isSummit && correctAnswerIndex === index ? <img src="/true.svg" alt="" className={Styles.true} /> : ''
-                            }{
-                                isSummit && correctAnswerIndex !== index && selectedAnswerIndex === index ? <img src="/false.svg" alt="" className={Styles.false} /> : ''
-                            }
-                        </span>
-                        <p key={index.toString()} >
-                            {answer}
-                        </p>
+                        {
+                            isSummit && correctAnswerIndex === index ? <img src="/true.svg" alt="" className={Styles.true} /> : ''
+                        }{
+                            isSummit && correctAnswerIndex !== index && selectedAnswerIndex === index ? <img src="/false.svg" alt="" className={Styles.false} /> : ''
+                        }
                     </span>
-                    </>
-                );
-            })
+                    <p>{answer}</p>
+                </span>
+                </div>;
+            })}
+            </>
         );
     };
 

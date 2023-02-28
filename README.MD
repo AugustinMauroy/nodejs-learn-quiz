@@ -62,3 +62,30 @@ npm run dev
 ## Inspiration
 
 * [next learn](https://nextjs.org/learn/basics/create-nextjs-app/setup)
+
+
+## Refractoring
+
+Goal:
+
+```jsx
+<Quiz>
+{
+  [{
+    type: "multiple",
+    question : "What is node.js?",
+    answers : [
+        "A server side javascript runtime",
+        "A javascript framework",
+        "A tools for building javascript applications",
+    ],
+    correctAnswer: "A server side javascript runtime"
+  },
+  {
+    type: "boolean",
+    question : "Is nodejs a server side javascript runtime?",
+    correctAnswer: true
+  }]
+}
+</Quiz>
+```
